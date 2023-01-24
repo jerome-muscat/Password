@@ -58,7 +58,7 @@ def verif_mdp(mdp, caractere_speciaux, caractere):
 
 def choix_mdp():
     while True:
-        caractere = int(input("Veuillez choisir un nombre de caractère"))
+        caractere = int(input("Veuillez choisir un nombre de caractère : "))
         mdp = generation_mdp(caractere, caracteres, test)
         verif = verif_mdp(mdp, caracteres, caractere)
         if verif != "Valide":
@@ -69,7 +69,7 @@ def choix_mdp():
             crypte = hashlib.sha256(mdp.encode()).hexdigest()
             return crypte
 
-nom = input("Veuillez entrer votre nom d'utilisateur")
+nom = input("Veuillez entrer votre nom d'utilisateur : ")
 crypte = choix_mdp()
 if nom in dict_mot_de_passe:
     if crypte in dict_mot_de_passe[nom]:
