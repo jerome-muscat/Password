@@ -52,7 +52,7 @@ def saisi_mdp():
             crypte = hashlib.sha256(mdp.encode()).hexdigest()
             return crypte
 
-nom = input("Veuillez entrer votre nom d'utilisateur")
+nom = input("Veuillez entrer votre nom d'utilisateur : ")
 mot_de_passe = saisi_mdp()
 if nom in dict_mot_de_passe:
     if mot_de_passe in dict_mot_de_passe[nom]:
