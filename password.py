@@ -56,11 +56,17 @@ nom = input("Veuillez entrer votre nom d'utilisateur : ")
 mot_de_passe = saisi_mdp()
 if nom in dict_mot_de_passe:
     if mot_de_passe in dict_mot_de_passe[nom]:
-        pass
+        print("Mot de passe déjà existants !")
     elif mot_de_passe not in dict_mot_de_passe[nom]:
         dict_mot_de_passe[nom] += [mot_de_passe]
+        print("Mot de passe ajouté au fichier historique")
 else: 
     dict_mot_de_passe[nom] = [mot_de_passe]
+    print("Mot de passe ajouté au fichier historique")
+    
+affich_mot_de_passe = input("Voulez vous afficher tous vos mots de passe ? (oui ou non) ")
+if affich_mot_de_passe.lower() ==  "oui":
+    print(dict_mot_de_passe[nom])
 
 with open("mdp.json", "w") as f:
     json.dump(dict_mot_de_passe, f, separators=(",", ": "), indent=4)

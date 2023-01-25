@@ -65,19 +65,24 @@ def choix_mdp():
             print(verif, end="\r")
         else:
             print("Mot de passe valide")
-            print(mdp)
             crypte = hashlib.sha256(mdp.encode()).hexdigest()
             return crypte
 
 nom = input("Veuillez entrer votre nom d'utilisateur : ")
-crypte = choix_mdp()
+mot_de_passe = choix_mdp()
 if nom in dict_mot_de_passe:
-    if crypte in dict_mot_de_passe[nom]:
-        pass
-    elif crypte not in dict_mot_de_passe[nom]:
-        dict_mot_de_passe[nom] += [crypte]
+    if mot_de_passe in dict_mot_de_passe[nom]:
+        print("Mot de passe déjà existants !")
+    elif mot_de_passe not in dict_mot_de_passe[nom]:
+        dict_mot_de_passe[nom] += [mot_de_passe]
+        print("Mot de passe ajouté au fichier historique")
 else: 
-    dict_mot_de_passe[nom] = [crypte]
+    dict_mot_de_passe[nom] = [mot_de_passe]
+    print("Mot de passe ajouté au fichier historique")
+    
+affich_mot_de_passe = input("Voulez vous afficher tous vos mots de passe ? (oui ou non) ")
+if affich_mot_de_passe.lower() ==  "oui":
+    print(dict_mot_de_passe[nom])
 
 with open("aleatoire.json", "w") as f:
     json.dump(dict_mot_de_passe, f, separators=(",", ": "), indent=4)
